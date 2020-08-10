@@ -1,0 +1,19 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node-api run ."
+  },
+  "node-api": {
+  	"controller": "node-api.js",
+    "middleware": "node-api.js"
+  },
+  "dependencies": {
+    "node-api": "^1.0.0",
+    "typescript": "^3.9.6"
+  },
+  "author": "",
+  "license": "ISC"
+}
