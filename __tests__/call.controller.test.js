@@ -1,11 +1,11 @@
-const con = require('../dist/base/GetController').default
+const GetController = require('../dist/base/GetController').default
 const CallController = require('../dist/base/CallController').default
 const path = require('path')
 
 const project = path.resolve('./examples/login-api/')
 
 
-const ls = con(project)
+const ls = GetController(project)
 const controllerPath = ls[0].path
 
 let payload = {
@@ -16,6 +16,7 @@ let payload = {
 
 
 test('Should call \'Login\' controller', (next) => {
+	console.log(ls[0])
 	CallController(project, controllerPath, payload)
 	.then(result => {
 		expect(result).toHaveProperty('token');

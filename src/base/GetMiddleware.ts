@@ -49,11 +49,18 @@ function resolveMiddlewarePath(pkg_data: {[key: string]:any}, project: string): 
 }
 
 function getAllMiddlewares(controllerPath: string) {
-	let controller_json = require(controllerPath)
-	return controller_json.middleware
+	let middleware_json = require(controllerPath)
+	let dir = path.parse(controllerPath).dir
+	for(const index in middleware_json.middleware) {
+		if(!path.parse(middleware_json.middleware[index].path).root) {
+			middleware_json.middleware[index].path = path.join(dir, middleware_json.middleware[index].path)
+		}
+	}
+	return middleware_json.middleware
 }
 
-export default function GetController(project: string) {
+
+export default function GetMiddleware(project: string): Array<IMiddleware> {
 	let pkg = path.join(project, 'package.json')
 	if (fs.existsSync(pkg)) {
 		// console.log(pkg)
@@ -76,7 +83,7 @@ if (require.main === module) {
     	if(!path.parse(project).root) {
     		project = path.join(process.cwd(), project)
     	}
-    	const ls = GetController(project)
+    	const ls = GetMiddleware(project)
 		for(const index in ls) {
 			console.log(`${ls[index].name} [${ls[index].status}]: ${ls[index].path}`)
 		}

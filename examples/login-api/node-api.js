@@ -3,6 +3,7 @@ module.exports = {
 		{
 			"name": "Login",
 			"path": "./controller/login",
+			"middlewares": ["login.middleware"],
 			"status": true
 		},
 		{
@@ -18,7 +19,7 @@ module.exports = {
 	],
 	"middleware": [
 		{
-			"name": "Login.middleware",
+			"name": "login.middleware",
 			"path": "./middleware/login",
 			"status": true
 		}
