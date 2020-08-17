@@ -3,7 +3,7 @@ module.exports = {
 		{
 			"name": "Login",
 			"path": "./controller/login",
-			"middlewares": ["login.middleware"],
+			"middlewares": ["csrf", "login.middleware"],
 			"status": true
 		},
 		{
@@ -14,6 +14,7 @@ module.exports = {
 		{
 			"name": "GetJWTToken",
 			"path": "./controller/get_jwt",
+			"middlewares": [],
 			"status": true
 		}
 	],
@@ -21,6 +22,11 @@ module.exports = {
 		{
 			"name": "login.middleware",
 			"path": "./middleware/login",
+			"status": true
+		},
+		{
+			"name": "csrf",
+			"path": "./middleware/csrf",
 			"status": true
 		}
 	]

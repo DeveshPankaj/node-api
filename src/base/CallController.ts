@@ -1,5 +1,8 @@
 import GetControllerByName from './GetControllerByName'
 import CallControllerByName from './CallControllerByName'
+import {IInput} from '../interface/common'
+
+
 
 const path = require('path')
 const fs = require('fs')
@@ -21,7 +24,7 @@ function validate (input: {[key: string]: any}, args: {[key: string]: any}): boo
 }
 
 // Call Controller from file path
-export default function CallController (project: string, file: string, input: object) {
+export default function CallController (project: string, file: string, input: IInput) {
 	
 	return new Promise((resolve, reject) => {
 		if(!path.parse(file).ext) {
@@ -37,7 +40,7 @@ export default function CallController (project: string, file: string, input: ob
 
 			// TODO: platform object should be created from saperate function
 			let platform = {
-				CallController: (controllerName: string, input: object) => CallControllerByName(project, controllerName, input)
+				CallController: (controllerName: string, input: IInput) => CallControllerByName(project, controllerName, input)
 			}
 
 			// TODO: request, response must come form user (developer) 
@@ -45,7 +48,7 @@ export default function CallController (project: string, file: string, input: ob
 			let res = {}
 			try {
 				let _con: IController = new con(platform, req, res)
-				if(!validate(con.input, input)) {
+				if(!validate(con.input, input.data)) {
 					reject(`[CallController ${con.name}] Error: input param not match with the expected`)
 				}
 				if(_con.main) {

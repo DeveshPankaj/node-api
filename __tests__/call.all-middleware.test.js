@@ -1,15 +1,16 @@
 const GetController = require('../dist/base/GetController').default
-const CallController = require('../dist/base/CallController').default
+const CallAllMiddleware = require('../dist/base/CallAllMiddleware').default
 const path = require('path')
 
 const project = path.resolve('./examples/login-api/')
 
 
 const ls = GetController(project)
-const controllerPath = ls[0].path
+const controllerName = ls[0].name
 
 let payload = {
-	csrf: '12wefgr23',
+	token: '876tfbj765ed',
+	csrf: 'rfyfutc',
 	data: {
 		name: 'pankaj',
 		password: '**********'
@@ -18,21 +19,16 @@ let payload = {
 
 
 
-test('Should call \'Login\' controller', (next) => {
+test('Should call all middleware for login controller', (next) => {
 	// console.log(ls[0])
-	CallController(project, controllerPath, payload)
+	CallAllMiddleware(project, controllerName, payload)
 	.then(result => {
-		expect(result).toHaveProperty('token');
 		next()
 	})
 	.catch(error => {
-		console.log(error)
+		throw error
 	})
   //expect(login[0].name).toEqual('Login');
 });
-
-
-
-
 
 

@@ -7,8 +7,10 @@ const project = path.resolve('./examples/login-api/')
 const platform  = GetPlatformInstence(project)
 
 let payload = {
-	name: 'pankaj',
-	password: '**********'
+	data: {
+		name: 'pankaj',
+		password: '**********'	
+	}
 }
 
 test('Should call Login Controller', (next) => {
@@ -18,7 +20,7 @@ test('Should call Login Controller', (next) => {
 		expect(data.token.indexOf('JWT') !== -1).toBe(true)
 		next()
 	})
-	.catch(console.log)
+	.catch(error=> {throw error})
 });
 
 
