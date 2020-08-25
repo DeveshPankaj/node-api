@@ -7,10 +7,11 @@
     "start": "node-api run ."
   },
   "node-api": {
-  	"controller": "node-api.js",
+    "controller": "node-api.js",
     "middleware": "node-api.js"
   },
   "dependencies": {
+    "express": "^4.17.1",
     "node-api": "^1.0.0",
     "typescript": "^3.9.6"
   },
