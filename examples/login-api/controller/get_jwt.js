@@ -1,4 +1,5 @@
 // Imports
+const jwt = require('jsonwebtoken');
 
 // Class
 class GetJWTToken {
@@ -9,7 +10,8 @@ class GetJWTToken {
 	}
 
 	main (input, resolve, reject) {
-		resolve({token: "JWT-12345.2345we123.1234q=="})
+		let token = jwt.sign(input, 'shhhhh');
+		resolve({token})
 	}
 
 	destroy () {

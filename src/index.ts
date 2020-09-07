@@ -51,7 +51,7 @@ function exec(req: Request, res: Express.Response, next: Express.NextFunction) {
 		data: req.body
 	};
 
-	(<{CallController(project: string, controllerName: string, input: IInput): Promise<unknown>}>platform).CallController(config.project, 'Login', payload)
+	(<{CallController(project: string, controllerName: string, input: { [key:string]: any }): Promise<unknown>}>platform).CallController(config.project, 'Login', payload.data)
 	.then(data => {
 		res.json(data)
 	})

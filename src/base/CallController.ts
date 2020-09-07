@@ -48,7 +48,7 @@ export default function CallController (project: string, file: string, input: II
 			let res = {}
 			try {
 				let _con: IController = new con(platform, req, res)
-				if(!validate(con.input, input.data)) {
+				if(!validate(con.input, input)) {
 					reject(`[CallController ${con.name}] Error: input param not match with the expected`)
 				}
 				if(_con.main) {

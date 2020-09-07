@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "node-api": "^1.0.0",
     "typescript": "^3.9.6"
   },

@@ -3,7 +3,7 @@ module.exports = {
 		{
 			"name": "Login",
 			"path": "./controller/login",
-			"middlewares": ["csrf", "login.middleware"],
+			"middlewares": ["csrf", "token"],
 			"status": true
 		},
 		{
@@ -20,8 +20,8 @@ module.exports = {
 	],
 	"middleware": [
 		{
-			"name": "login.middleware",
-			"path": "./middleware/login",
+			"name": "token",
+			"path": "./middleware/token",
 			"status": true
 		},
 		{
